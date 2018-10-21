@@ -20,13 +20,14 @@ void ServoReader::setup() {
 
 void ServoReader::loop() {
 	value = pulseIn(_servoPin, HIGH);
-	Serial.println(value);
-	if (value >= _centerValue + 50 ){
-		_pIndicatorHandler->turnRight();
-	} else if (value <= _centerValue - 50){
-		_pIndicatorHandler->turnLeft();
-	} else {
-		_pIndicatorHandler->noTurn();
+	if (value != 0) {
+		if (value >= _centerValue + 50 ){
+			_pIndicatorHandler->turnRight();
+		} else if (value <= _centerValue - 50){
+			_pIndicatorHandler->turnLeft();
+		} else {
+			_pIndicatorHandler->noTurn();
+		}
 	}
 }
 
