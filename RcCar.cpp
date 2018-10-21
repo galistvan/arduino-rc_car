@@ -2,7 +2,7 @@
 
 void bluetoothCommand(char* command);
 
-IndicatorHandler indicatorHandler(11,12);
+IndicatorHandler indicatorHandler(11, 12);
 ServoReader leftRightServo(5, 1600, &indicatorHandler);
 BluetoothHandler bluetoothHandler(10, 9, &bluetoothCommand);
 
@@ -22,5 +22,11 @@ void loop() {
 }
 
 void bluetoothCommand(char* command) {
-	Serial.println(command);
+	if ((strcmp(command, "head") == 0)) {
+		//headlight toggle
+	} else if ((strcmp(command, "frta") == 0)) {
+		//front-taillight toggle
+	} else {
+		Serial.println("unknown command");
+	}
 }

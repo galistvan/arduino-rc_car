@@ -18,11 +18,11 @@ void BluetoothHandler::setup() {
 }
 
 void BluetoothHandler::loop() {
-	if (bluetooth->available() == 4) {
-		bluetooth->readBytes(array, 4);
-		array[4]='\0';
-		_bluetoothCommand(array);
-//		delete[] array;
-//		array = new char[5];
+	if (bluetooth->available()) {
+		if (bluetooth->available() >= 4) {
+			bluetooth->readBytes(array, 4);
+			array[4] = '\0';
+			_bluetoothCommand(array);
+		}
 	}
 }
